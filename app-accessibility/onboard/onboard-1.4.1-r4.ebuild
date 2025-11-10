@@ -3,10 +3,9 @@
 
 EAPI=8
 
-#DISTUTILS_USE_SETUPTOOLS="no"
 DISTUTILS_USE_PEP517="no"
 
-PYTHON_COMPAT=( python3_{8..13} )
+PYTHON_COMPAT=( python3_{8..11} )
 
 inherit distutils-r1 gnome2-utils
 
@@ -22,6 +21,8 @@ LICENSE="GPL-3+ BSD"
 SLOT="0"
 
 KEYWORDS="~amd64 arm arm64 ~x86"
+
+PYVER=$(ver_cut 1-2)
 
 COMMON_DEPEND="app-text/hunspell:=
 	dev-libs/dbus-glib
@@ -48,6 +49,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	app-accessibility/at-spi2-core
 	app-text/iso-codes
+	dev-lang/python-exec[python_targets_pypy${PYVER/./_}(-)]
 	gnome-extra/mousetweaks
 	x11-libs/libxkbfile"
 
